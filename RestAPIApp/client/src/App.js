@@ -6,6 +6,7 @@ function App() {
   const [plength, setPLength] = useState(0)
   const [swidth, setSWidth] = useState(0)
   const [pwidth, setPWidth] = useState(0)
+  const [result, setResult] = useState("")
 
   const requestOptions = {
     method: 'POST',
@@ -30,14 +31,24 @@ function App() {
     event.preventDefault()
     fetch('http://127.0.0.1:8000/predict', requestOptions).then(
       response => response.json()
-    ).then(result => console.log(result))
+    ).then(res => {
+      if ("0" === res[1]) {
+        setResult("Setosa");
+      }
+      else if ("1" === res[1]) {
+        setResult("Versicolor")
+      }
+      else if ("2" === res[1]) {
+        setResult("Virginica")
+      }
+    })
   }
   return (
     <div className="App">
       <h1>
         Predict
       </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="post">
         <label htmlFor="slength">Sepal Length:</label>
         <input type="text" id="slength" name="slength" value={slength} onChange={(event) => { setSLength(event.target.value) }} /><br /><br />
         <label htmlFor="swidth">Sepal Width:</label>
@@ -55,6 +66,14 @@ function App() {
           Submit
         </button>
       </form>
+      <br></br>
+      <div>
+        Result
+      </div>
+      <br></br>
+      <div>
+        {result ? `The flower might be of type '${result}'` : ""}
+      </div>
     </div>
   );
 }

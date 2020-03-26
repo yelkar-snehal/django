@@ -37,7 +37,7 @@ function App() {
       <h1>
         Predict
       </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="post">
         <label htmlFor="slength">Sepal Length:</label>
         <input type="text" id="slength" name="slength" value={slength} onChange={(event) => { setSLength(event.target.value) }} /><br /><br />
         <label htmlFor="swidth">Sepal Width:</label>

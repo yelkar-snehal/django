@@ -23,7 +23,6 @@ from snippets.serializers import SnippetSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
-
 # function based view
 # @api_view(['GET', 'POST'])
 # def snippet_list(request, format=None):
@@ -180,3 +179,31 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+# relationships and hyperlinks
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
+
+
+# snippet highlight
+from rest_framework import renderers
+from rest_framework.response import Response
+
+
+class SnippetHighlight(generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    renderer_classes = [renderers.StaticHTMLRenderer]
+
+    def get(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)

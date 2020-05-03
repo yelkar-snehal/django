@@ -8,6 +8,8 @@ urlpatterns = [
     # path('snippets/<int:pk>/', views.snippet_detail),
 
     # class based views
+    path('', views.api_root),
+    path('snippets/<int:pk>/highlight/', views.SnippetHighlight.as_view()),
     path('snippets/', views.SnippetList.as_view()),
     path('snippets/<int:pk>/', views.SnippetDetail.as_view()),
     path('users/', views.UserList.as_view()),

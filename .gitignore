@@ -1,4 +1,9 @@
-.idea/
+# dependencies
 __pycache__/
-.DS_Store
+migrations/
+*.pkl
 
+# misc
+.idea/
+.DS_Store
+db.sqlite3

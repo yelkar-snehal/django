@@ -16,6 +16,7 @@ from snippets import views
 #     path('users/', views.UserList.as_view()),
 #     path('users/<int:pk>/', views.UserDetail.as_view()),
 # ]
+# urlpatterns = format_suffix_patterns(urlpatterns)
 
 
 # API endpoints
@@ -38,6 +39,3 @@ urlpatterns = format_suffix_patterns([
         views.UserDetail.as_view(),
         name='user-detail')
 ])
-
-
-urlpatterns = format_suffix_patterns(urlpatterns)

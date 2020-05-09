@@ -149,10 +149,10 @@ from rest_framework import generics
 # from snippets.models import Snippet
 # from snippets.serializers import SnippetSerializer
 # from rest_framework import generics
-# from django.contrib.auth.models import User
-# from snippets.serializers import UserSerializer
-# from rest_framework import permissions
-# from snippets.permissions import IsOwnerOrReadOnly
+from django.contrib.auth.models import User
+from snippets.serializers import UserSerializer
+from rest_framework import permissions
+from snippets.permissions import IsOwnerOrReadOnly
 #
 #
 # class SnippetList(generics.ListCreateAPIView):
@@ -196,7 +196,7 @@ from rest_framework import generics
 #
 #
 # # snippet highlight
-# from rest_framework import renderers
+from rest_framework import renderers
 # from rest_framework.response import Response
 #
 #
